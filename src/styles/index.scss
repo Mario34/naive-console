@@ -1,0 +1,24 @@
+@import './variables.scss';
+
+body {
+  color: #333;
+}
+
+$--color-primary: $primary;
+$--font-path: 'element-plus/lib/theme-chalk/fonts';
+@import 'element-plus/packages/theme-chalk/src/index';
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 300ms, opacity 300ms;
+}
+
+.fade-enter-from {
+  transform: translate(-10px, 0);
+  opacity: 0;
+}
+
+.fade-leave-to {
+  transform: translate(10px, 0);
+  opacity: 0;
+}
