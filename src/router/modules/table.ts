@@ -5,16 +5,16 @@ import type { RouteRecordRaw } from 'vue-router'
 */
 const routes: RouteRecordRaw[] = [
   {
-    path: '/demo',
+    path: '/table',
     meta: {
-      title: 'demo',
+      title: 'table',
       icon: 'el-icon-ice-cream-round',
     },
     component: () => import('/@/layout/index.vue'),
     children: [
       {
         path: '',
-        name: 'demo',
+        name: 'table',
         meta: {
           title: 'demo',
         },

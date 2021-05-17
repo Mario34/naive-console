@@ -49,7 +49,7 @@ import { useRouter } from 'vue-router'
 import { isAbsolutePath, isUrl } from '/@/utils'
 import MenuLink from './MenuLink.vue'
 
-import type { ConfigRoute } from '/@/router'
+import type { ConfigRoute } from '/@/router/router-type'
 import type { PropType } from 'vue'
 
 export default defineComponent({

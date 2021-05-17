@@ -2,7 +2,7 @@
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item
       v-for="route in routeList"
-      :key="route.path"
+      :key="route.name"
       :to="route.path"
     >{{ route.meta?.title }}</el-breadcrumb-item>
   </el-breadcrumb>

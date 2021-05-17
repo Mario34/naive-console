@@ -1,15 +1,17 @@
 <template>
-  <div class="not-found">
+  <div class="status-page-layout">
     <div class="title">
-      <code>200 * 2 + 4</code>
+      <code>{{ code }}</code>
     </div>
     <div class="desc">
-      您访问的页面不存在
+      {{ desc }}
     </div>
     <div class="operation">
-      <router-link to="/">
-        <el-button type="primary">返回首页</el-button>
-      </router-link>
+      <slot>
+        <router-link to="/">
+          <el-button type="primary">返回首页</el-button>
+        </router-link>
+      </slot>
     </div>
   </div>
 </template>
@@ -18,17 +20,24 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'NotFound',
-  setup() {
-    return {}
+  name: 'StatusPageLayput',
+  props: {
+    code: {
+      type: String,
+      required: true,
+    },
+    desc: {
+      type: String,
+      default: '',
+    },
   },
 })
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
-.not-found {
+.status-page-layout {
   height: 100vh;
   display: flex;
   flex-direction: column;

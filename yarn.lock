@@ -74,8 +74,8 @@
 
 "@popperjs/core@^2.4.4":
   version "2.9.2"
-  resolved "https://registry.nlark.com/@popperjs/core/download/@popperjs/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
-  integrity sha1-rep7aVPLs0ZRdmsFSEaOdDxqI1M=
+  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
+  integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
 
 "@types/json-schema@^7.0.3":
   version "7.0.7"
@@ -88,9 +88,9 @@
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/lodash@^4.14.161":
-  version "4.14.168"
-  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
-  integrity sha1-/iRjLnm3rePxMoka//hsql5c4Ag=
+  version "4.14.169"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.169.tgz#83c217688f07a4d9ef8f28a3ebd1d318f6ff4cbb"
+  integrity sha512-DvmZHoHTFJ8zhVYwCLWbQ7uAbYQEk52Ev2/ZiQ7Y7gQGeV9pjBqjnQpECMHfKS1rCYAhMI7LHVxwyZLZinJgdw==
 
 "@types/node@^15.0.2":
   version "15.0.2"
@@ -358,8 +358,15 @@ astral-regex@^2.0.0:
 
 async-validator@^3.4.0:
   version "3.5.2"
-  resolved "https://registry.nlark.com/async-validator/download/async-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
-  integrity sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA=
+  resolved "https://registry.npmjs.org/async-validator/-/async-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
+  integrity sha512-8eLCg00W9pIRZSB781UUX/H6Oskmm8xloZfr09lz5bikRpBVDlJ3hRVuxxP1SxcwsEYfJ4IU8Q19Y8/893r3rQ==
+
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -551,8 +558,8 @@ csstype@^2.6.8:
 
 dayjs@1.x:
   version "1.10.4"
-  resolved "https://registry.nlark.com/dayjs/download/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
-  integrity sha1-jlRKm4aD9heD9XCYCoqA6vVKseI=
+  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
+  integrity sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
 
 debug@^2.6.9:
   version "2.6.9"
@@ -615,10 +622,10 @@ duplexer2@~0.1.4:
   dependencies:
     readable-stream "^2.0.2"
 
-element-plus@^1.0.2-beta.41:
-  version "1.0.2-beta.41"
-  resolved "https://registry.nlark.com/element-plus/download/element-plus-1.0.2-beta.41.tgz?cache=0&sync_timestamp=1619434967798&other_urls=https%3A%2F%2Fregistry.nlark.com%2Felement-plus%2Fdownload%2Felement-plus-1.0.2-beta.41.tgz#9c234b536b3401d042505c003e579bd65081f0f0"
-  integrity sha1-nCNLU2s0AdBCUFwAPleb1lCB8PA=
+element-plus@^1.0.2-beta.44:
+  version "1.0.2-beta.44"
+  resolved "https://registry.npmjs.org/element-plus/-/element-plus-1.0.2-beta.44.tgz#7aff122e6181088223027adb65a4a8321e1ef4e9"
+  integrity sha512-PmGfOnV/66LPGSsSbaesiTnmrcQ5PnoZLr2eKRv2/lJ06xUc0AiSBiktGrds0mETgC1O/mRHswXk/Se6aJtpKQ==
   dependencies:
     "@popperjs/core" "^2.4.4"
     "@types/lodash" "^4.14.161"
@@ -934,6 +941,11 @@ flatted@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
+
+follow-redirects@^1.10.0:
+  version "1.14.1"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.1.tgz#d9114ded0a1cfdd334e164e6662ad02bfd91ff43"
+  integrity sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -1397,8 +1409,8 @@ minimist@^1.2.0, minimist@^1.2.5:
 
 mitt@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.nlark.com/mitt/download/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
-  integrity sha1-90BXfCMXbGIFsSGylzUU6t4bIjA=
+  resolved "https://registry.npmjs.org/mitt/-/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
+  integrity sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==
 
 "mkdirp@>=0.5 0":
   version "0.5.5"
@@ -1456,7 +1468,7 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
 
 normalize-wheel@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.nlark.com/normalize-wheel/download/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
+  resolved "https://registry.npmjs.org/normalize-wheel/-/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
   integrity sha1-rsiGr/2wRQcNhWRH32Ls+GFG7EU=
 
 normalize.css@^8.0.1:
@@ -1766,8 +1778,8 @@ require-from-string@^2.0.2:
 
 resize-observer-polyfill@^1.5.1:
   version "1.5.1"
-  resolved "https://registry.nlark.com/resize-observer-polyfill/download/resize-observer-polyfill-1.5.1.tgz?cache=0&sync_timestamp=1618846967396&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fresize-observer-polyfill%2Fdownload%2Fresize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
-  integrity sha1-DpAg3T0hAkRY1OvSfiPkAmmBBGQ=
+  resolved "https://registry.npmjs.org/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-from@^4.0.0:
   version "4.0.0"

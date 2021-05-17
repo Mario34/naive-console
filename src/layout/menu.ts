@@ -1,5 +1,5 @@
 import { configRoutes } from '/@/router'
-import type { ConfigRoute } from '/@/router'
+import type { ConfigRoute } from '/@/router/router-type'
 
 const generateMenuList = (list: ConfigRoute[]): ConfigRoute[] => {
   const filter: ConfigRoute[] = []

@@ -1,4 +1,4 @@
-import type { OutLinkItem } from '../index'
+import type { OutLinkItem } from '../router-type'
 
 /**
  * 外链

@@ -13,7 +13,7 @@
           type="text"
           class="username"
         >
-          Admin
+          {{ userInfo?.username || 'NA' }}
           <i class="el-icon-caret-bottom" />
         </el-button>
         <template #dropdown>
@@ -29,7 +29,10 @@
 <script lang="ts">
 import { useRouter } from 'vue-router'
 import Breadcrumb from './Breadcrumb.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, toRefs } from 'vue'
+import { useUser } from '/@/models/user'
+const { state, clearUserInfo } = useUser()
+const { userInfo } = toRefs(state)
 
 type Command = 'exit' | ''
 export default defineComponent({
@@ -42,19 +45,21 @@ export default defineComponent({
     const onSwitchFold = () => {}
     const onCommand = (e: Command) => {
       if (e === 'exit') {
+        clearUserInfo()
         router.push('/login')
       }
     }
     return {
       onSwitchFold,
       onCommand,
+      userInfo,
     }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 
 .header {
   height: $header-height;

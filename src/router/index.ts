@@ -1,46 +1,16 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import beforeEach from './before-each'
 import base from './modules/base'
 import home from './modules/home'
 import table from './modules/table'
 import outLink from './modules/out-link'
 
-import type { RouteRecordRaw, RouteMeta } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import type { ConfigRoute, CustomRouteMeta } from './router-type'
 
-export type ConfigRoute = RouteRecordRaw | OutLinkItem
-
-export interface CustomRouteMeta {
-  /**
-    * 在菜单栏中显示(默认true)
-  */
-  menu?: boolean
-  /**
-    * 在标签(Tabs)中显示(默认true)
-  */
-  tabs?: boolean
-  /**
-   * 菜单图标
-  */
-  icon?: string
-  /**
-   * 菜单名称
-  */
-  title?: string
-  /**
-   * 外链
-  */
-  link?: string
-}
-
-export interface OutLinkItem {
-  path: string
-  name: string
-  meta: RouteMeta
-  children?: ConfigRoute[]
-}
-
-declare module 'vue-router' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface RouteMeta extends CustomRouteMeta {}
+const defaultMeta: Partial<CustomRouteMeta> = {
+  menu: true,
+  tabs: true,
 }
 
 const isRouteRaw = (route: ConfigRoute): route is RouteRecordRaw => {
@@ -53,6 +23,7 @@ const isRouteRaw = (route: ConfigRoute): route is RouteRecordRaw => {
 export const filterRoutes = (routes: (ConfigRoute)[]): RouteRecordRaw[] => {
   return routes.reduce((pre, curr) => {
     if (isRouteRaw(curr)) {
+      curr.meta = Object.assign({}, defaultMeta, curr?.meta)
       if (curr.children) {
         curr.children = filterRoutes(curr.children)
       }
@@ -77,11 +48,15 @@ export const configRoutes: (ConfigRoute)[] = [
       menu: false,
       tabs: false,
     },
-    component: () => import('/@/views/error-page/not-found.vue'),
+    component: () => import('../views/error-page/404.vue'),
   },
 ]
 
-export default createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes: filterRoutes(configRoutes),
 })
+
+beforeEach(router)
+
+export default router

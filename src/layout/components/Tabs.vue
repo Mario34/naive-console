@@ -44,11 +44,10 @@ export default defineComponent({
     const { tabs, createOrUpdate, closeItem } = useTabs()
 
     watch(
-      route,
-      (val) => {
-        console.log('route change', val)
-        if (!(val.meta?.tabs === false)) {
-          createOrUpdate(val)
+      route.query,
+      () => {
+        if (!(route.meta?.tabs === false)) {
+          createOrUpdate(route)
         }
       },
       {
