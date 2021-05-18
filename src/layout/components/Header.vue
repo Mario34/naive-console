@@ -27,11 +27,10 @@
 </template>
 
 <script lang="ts">
-import { useRouter } from 'vue-router'
 import Breadcrumb from './Breadcrumb.vue'
 import { defineComponent, toRefs } from 'vue'
 import { useUser } from '/@/models/user'
-const { state, clearUserInfo } = useUser()
+const { state, logout } = useUser()
 const { userInfo } = toRefs(state)
 
 type Command = 'exit' | ''
@@ -41,12 +40,10 @@ export default defineComponent({
     Breadcrumb,
   },
   setup() {
-    const router = useRouter()
     const onSwitchFold = () => {}
     const onCommand = (e: Command) => {
       if (e === 'exit') {
-        clearUserInfo()
-        router.push('/login')
+        logout()
       }
     }
     return {
