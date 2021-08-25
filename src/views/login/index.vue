@@ -64,7 +64,6 @@ import { defineComponent, reactive } from 'vue'
 import Icons from './components/Icons'
 import { useRouter } from 'vue-router'
 import { useUser } from '/@/models/user'
-const { login } = useUser()
 
 export default defineComponent({
   name: 'Login',
@@ -78,6 +77,7 @@ export default defineComponent({
     }
     const rules = {}
     const router = useRouter()
+    const { login } = useUser(router)
     const onLogin = () => {
       login({}).then(() => {
         router.push({

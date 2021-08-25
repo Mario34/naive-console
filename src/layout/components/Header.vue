@@ -30,8 +30,7 @@
 import Breadcrumb from './Breadcrumb.vue'
 import { defineComponent, toRefs } from 'vue'
 import { useUser } from '/@/models/user'
-const { state, logout } = useUser()
-const { userInfo } = toRefs(state)
+import { useRouter } from 'vue-router'
 
 type Command = 'exit' | ''
 export default defineComponent({
@@ -46,6 +45,8 @@ export default defineComponent({
         logout()
       }
     }
+    const { state, logout } = useUser(useRouter())
+    const { userInfo } = toRefs(state)
     return {
       onSwitchFold,
       onCommand,

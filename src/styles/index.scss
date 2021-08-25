@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @import './variables.scss';
 
 body {
@@ -5,6 +7,32 @@ body {
 }
 
 $--color-primary: $primary;
+$--colors: () !default;
+$--colors: map.deep-merge(
+  (
+    'white': #ffffff,
+    'black': #000000,
+    'primary': (
+      'base': $primary,
+    ),
+    'success': (
+      'base': #67c23a,
+    ),
+    'warning': (
+      'base': #e6a23c,
+    ),
+    'danger': (
+      'base': #f56c6c,
+    ),
+    'error': (
+      'base': #f56c6c,
+    ),
+    'info': (
+      'base': #909399,
+    ),
+  ),
+  $--colors
+);
 $--font-path: 'element-plus/lib/theme-chalk/fonts';
 @import 'element-plus/packages/theme-chalk/src/index';
 

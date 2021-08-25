@@ -15,11 +15,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useUser } from '/@/models/user'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
   setup() {
-    const { state, getUserInfo, clearUserInfo } = useUser()
+    const { state, getUserInfo, clearUserInfo } = useUser(useRouter())
     return {
       state,
       getUserInfo,

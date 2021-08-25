@@ -1,7 +1,7 @@
 import { reactive, readonly } from 'vue'
 import { Token } from '/@/utils/storage'
 import * as api from '/@/api/user'
-import router from '/@/router'
+import type { Router } from 'vue-router'
 
 export interface UserInfo {
   username: string
@@ -12,11 +12,11 @@ export interface UserState {
   userInfo: UserInfo | null
 }
 
-const state = reactive<UserState>({
-  userInfo: null,
-})
 
-export const useUser = () => {
+export const useUser = (router: Router) => {
+  const state = reactive<UserState>({
+    userInfo: null,
+  })
   const setUserState = (data: UserInfo) => {
     state.userInfo = data
   }

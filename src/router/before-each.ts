@@ -2,9 +2,8 @@ import { Token } from '/@/utils/storage'
 import type { Router } from 'vue-router'
 import { useUser } from '/@/models/user'
 
-const { state, getUserInfo, clearUserInfo } = useUser()
-
 const beforeEach = (router: Router) => {
+  const { state, getUserInfo, clearUserInfo } = useUser(router)
   router.beforeEach(async (to, form, next) => {
     if (to.name === 'login') {
       if (!Token.get()) {
