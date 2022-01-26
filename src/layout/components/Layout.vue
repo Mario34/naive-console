@@ -18,7 +18,7 @@ const layoutCtx = useLayout()
 </script>
 
 <style lang="scss" scoped>
-.layout{
+.layout {
   &__main {
     min-height: 100vh;
     margin-left: var(--app-side-width);

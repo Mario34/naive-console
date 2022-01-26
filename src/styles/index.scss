@@ -1,4 +1,5 @@
-body,html {
+body,
+html {
   background-color: #fcfcfc;
   padding: 0;
   margin: 0;
@@ -10,11 +11,9 @@ body,html {
   --app-side-collapsed-width: 64px;
   --app-header-height: 50px;
   --app-animation-duration: 200ms;
-
   --app-bg-base: #f0f0f0;
   --app-bg-header: #fff;
   --app-bg-main: #fff;
-
   --app-zindex-top: 100;
 
   //--app-bg-base: #555;

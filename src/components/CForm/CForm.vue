@@ -93,8 +93,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .n-input,
-.n-select
-{
+.n-select {
   min-width: 200px;
 }
 </style>

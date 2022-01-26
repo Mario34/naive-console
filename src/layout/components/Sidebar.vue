@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { h, computed } from 'vue'
-import { NMenu, NIcon, NScrollbar, NGradientText } from 'naive-ui'
+import { NMenu, NIcon, NScrollbar } from 'naive-ui'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { layoutRoutes } from '@/router/layout-routes'
 import { useLayout } from '../config'
@@ -96,6 +96,23 @@ const currentKey = computed(() => {
   transition: width var(--app-animation-duration);
   background-color: rgb(0, 20, 40);
 
+  .app-slogan {
+    color: #fff;
+    padding: 14px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-name {
+    font-size: 18px;
+    margin-left: 4px;
+    display: inline-block;
+    transition: width var(--app-animation-duration);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   &.collapsed {
     width: var(--app-side-collapsed-width);
 
@@ -103,22 +120,5 @@ const currentKey = computed(() => {
       width: 0;
     }
   }
-}
-
-.app-slogan {
-  color: #fff;
-  padding: 14px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.app-name {
-  font-size: 18px;
-  margin-left: 4px;
-  display: inline-block;
-  transition: width var(--app-animation-duration);
-  overflow: hidden;
-  white-space: nowrap;
 }
 </style>
