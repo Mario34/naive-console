@@ -12,7 +12,7 @@
 import Sidebar from './Sidebar.vue'
 import Header from './Header.vue'
 import Content from './Content.vue'
-import { useLayout } from './config'
+import { useLayout } from '../config'
 
 const layoutCtx = useLayout()
 </script>

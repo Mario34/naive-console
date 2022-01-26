@@ -6,7 +6,6 @@
     >
       <div class="layout-header__left">
         <n-button
-          #icon
           strong
           secondary
           circle
@@ -35,13 +34,13 @@
 </template>
 
 <script setup lang="ts">
-import { useLayout } from './config'
+import { useLayout } from '../config'
 import {
   NIcon, NAvatar, NDropdown, NButton,
   useMessage,
 } from 'naive-ui'
 import { ArrowsHorizontal as SettingsAdjustIcon } from '@vicons/carbon'
-import Breadcrumb from '@/components/Layout/Breadcrumb.vue'
+import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 
 const layoutCtx = useLayout()
 const options = [

@@ -1,18 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { filterRowRoutes } from './defined'
-import { beforeEach } from './guard'
-import home from './modules/home'
-import base from './modules/base'
+import { guard } from './guard'
+import { routes } from './routes'
 
-const routes = filterRowRoutes([
-  ...home,
-  ...base,
-])
+console.log(filterRowRoutes(routes))
 
 export const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: filterRowRoutes(routes),
 })
 
 // 挂载路由守卫
-beforeEach(router)
+guard(router)

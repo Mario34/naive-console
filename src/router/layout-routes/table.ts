@@ -1,32 +1,35 @@
+import { RouterView } from 'vue-router'
 import { definedRoutes } from '../defined'
+import { Table as TableIcon } from '@vicons/carbon'
 
 /**
  * 表格
 */
 export default definedRoutes([
   {
-    path: '/table',
+    path: 'table',
     meta: {
       title: 'table',
-      icon: 'el-icon-ice-cream-round',
+      icon: TableIcon,
+      redirect: 'table-list',
     },
-    component: () => import('@/layout/index.vue'),
+    component: RouterView,
     children: [
       {
         path: '',
-        name: 'table',
+        name: 'table-list',
         meta: {
           title: 'demo',
         },
         component: () => import('@/views/home/index.vue'),
       },
       {
-        path: 'demo-table',
-        name: 'demo-table',
+        path: 'table-demo-table',
+        name: 'table-demo-table',
         meta: {
           title: 'demo-table',
         },
-        component: () => import('@/views/table/index.vue'),
+        component: () => import('@/views/home/index.vue'),
       },
     ],
   },

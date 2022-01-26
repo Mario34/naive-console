@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useLayout } from './config'
+import { useLayout } from '../config'
 
 export default defineComponent({
   name: 'LayoutContent',

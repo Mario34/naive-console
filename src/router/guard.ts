@@ -2,16 +2,16 @@ import { storageToken } from '@/storage'
 // import { useUser } from '@/models/user'
 
 import type { Router } from 'vue-router'
-import type { RouteType } from './defined'
 
-export const beforeEach = (router: Router) => {
+export const guard = (router: Router) => {
   // const { state, getUserInfo, clearUserInfo } = useUser(router)
   router.beforeEach(async (to, form, next) => {
     if (to.name === 'login') {
       if (!storageToken.get()) {
         next()
       } else {
-        next('/')
+        // next('/')
+        next()
       }
     } else if (!storageToken.get()) {
       // TODO: 添加重定向参数
@@ -29,6 +29,17 @@ export const beforeEach = (router: Router) => {
       // }
       // TODO: 权限校验
       next()
+    }
+  })
+  router.beforeResolve((to, form, next) => {
+    window.$appLoadingBar.start()
+    next()
+  })
+  router.afterEach((to, form, failure) => {
+    if (failure) {
+      window.$appLoadingBar.error()
+    } else {
+      window.$appLoadingBar.finish()
     }
   })
 }

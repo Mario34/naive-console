@@ -1,24 +1,22 @@
 <template>
   <div class="status-page">
-    {{ statusCode }}
+    <code>{{ statusCode || 'Error' }} form {{ $route.query.from }}</code>
+    <n-button @click="$router.back()">
+      返回
+    </n-button>
+    <n-button @click="$router.replace('/')">
+      返回首页
+    </n-button>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { NButton } from 'naive-ui'
 
-export default defineComponent({
-  name: 'StatusPage',
-  props: {
-    statusCode: {
-      type: Number,
-      default: 404,
-    },
-  },
-  setup() {
-    return {}
-  },
-})
+const props = defineProps<{
+  statusCode: string
+}>()
+
 </script>
 
 <style lang="scss" scoped>

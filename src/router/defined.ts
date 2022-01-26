@@ -9,39 +9,48 @@ export interface CustomRouteMeta {
   /* 在标签(Tabs)中显示(默认true) */
   tabs?: boolean
   /* 菜单图标 */
-  icon?: string
+  icon?: any
   /* 菜单名称 */
   title?: string
   /* 外链 */
   link?: string
+  /* 存在嵌套路由时，面包屑的非叶子路由的点击重定向路由名称 */
+  redirect?: string
+  /* 唯一key值(侧边栏展开收起) */
+  _key?: number
 }
-
-export interface OutLinkItem {
-  path: string
-  name: string
-  meta: CustomRouteMeta
-  children?: RouteType[]
-}
-
-export type RouteType = RouteRecordRaw | OutLinkItem
 
 declare module 'vue-router' {
   interface RouteMeta extends CustomRouteMeta { }
 }
 
-/* 具有类型提示的路由定义方法 */
-export const definedRoutes = (routes: RouteType[]) => routes
+let key = 0
+/* 自增key */
+function generateKey(): number {
+  return ++key
+}
 
-/* 过滤非原生路由配置(用于创建真实路由) */
-export const filterRowRoutes = (routes: RouteType[]): RouteRecordRaw[] => {
+export function definedRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
+  return routes
+}
+
+/* 过滤非原生路由配置，添加必要属性(用于创建真实路由) */
+export function filterRowRoutes(routes: RouteRecordRaw[]): RouteRecordRaw[] {
   const result: RouteRecordRaw[] = []
-  const isRow = (route: RouteType): route is RouteRecordRaw  => !route.meta?.link
+  const isRow = (route: RouteRecordRaw): route is RouteRecordRaw  => !route.meta?.link
   for (const route of routes) {
     if (isRow(route)) {
-      if (route.children?.length) {
-        route.children = filterRowRoutes(route.children)
+      const copyRoute = { ...route }
+      if (copyRoute.children) {
+        copyRoute.children = filterRowRoutes(copyRoute.children)
       }
-      result.push(route)
+      if (copyRoute.meta === undefined) {
+        copyRoute.meta = {}
+      }
+      if (copyRoute.meta._key === undefined) {
+        copyRoute.meta._key = generateKey()
+      }
+      result.push(copyRoute)
     }
   }
   return result
