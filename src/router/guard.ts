@@ -33,6 +33,7 @@ export const guard = (router: Router) => {
   })
   router.beforeResolve((to, form, next) => {
     window.$appLoadingBar.start()
+    window.document.title = to.meta?.title ?? 'Naive Console'
     next()
   })
   router.afterEach((to, form, failure) => {

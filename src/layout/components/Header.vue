@@ -39,32 +39,34 @@ import {
   NIcon, NAvatar, NDropdown, NButton,
   useMessage,
 } from 'naive-ui'
-import { ArrowsHorizontal as SettingsAdjustIcon } from '@vicons/carbon'
+import { ArrowsHorizontal as SettingsAdjustIcon, Lightning as LightningIcon } from '@vicons/carbon'
 import Breadcrumb from '@/layout/components/Breadcrumb.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const layoutCtx = useLayout()
 const options = [
   {
-    label: '滨海湾金沙，新加坡',
-    key: 'marina bay sands',
-    disabled: true,
+    label: '个人中心',
+    key: 'profile',
   },
   {
-    label: '布朗酒店，伦敦',
-    key: "brown's hotel, london",
-  },
-  {
-    label: '亚特兰蒂斯巴哈马，拿骚',
-    key: 'atlantis nahamas, nassau',
-  },
-  {
-    label: '比佛利山庄酒店，洛杉矶',
-    key: 'the beverly hills hotel, los angeles',
+    label: '退出登录',
+    key: 'logout',
   },
 ]
 const message = useMessage()
-const handleSelect = () => {
-  message.success('hahaha')
+const handleSelect = (e: string) => {
+  switch (e) {
+    case 'profile':
+      router.push({ name: 'user-profile' })
+      break
+    case 'logout':
+      router.replace({ name: 'login' })
+      break
+    default:
+      //
+  }
 }
 </script>
 

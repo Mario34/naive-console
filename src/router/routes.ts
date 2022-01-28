@@ -8,10 +8,6 @@ import Layout from '@/layout'
 export const routes = definedRoutes([
   {
     path: '/',
-    redirect: '/app',
-  },
-  {
-    path: '/app',
     component: Layout,
     children: [
       ...layoutRoutes,
