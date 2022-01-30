@@ -32,6 +32,15 @@ export const routes = definedRoutes([
     component: () => import('@/views/login/index.vue'),
   },
   {
+    path: '/login-password',
+    name: 'login-password',
+    meta: {
+      menu: false,
+      tabs: false,
+    },
+    component: () => import('@/views/login/password.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: to => ({
       name: 'app-status',

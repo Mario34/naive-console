@@ -37,9 +37,9 @@
 import { useLayout } from '../config'
 import {
   NIcon, NAvatar, NDropdown, NButton,
-  useMessage,
+  useMessage, useDialog,
 } from 'naive-ui'
-import { ArrowsHorizontal as SettingsAdjustIcon, Lightning as LightningIcon } from '@vicons/carbon'
+import { ArrowsHorizontal as SettingsAdjustIcon } from '@vicons/carbon'
 import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 import { useRouter } from 'vue-router'
 
@@ -56,13 +56,22 @@ const options = [
   },
 ]
 const message = useMessage()
+const dialog = useDialog()
 const handleSelect = (e: string) => {
   switch (e) {
     case 'profile':
       router.push({ name: 'user-profile' })
       break
     case 'logout':
-      router.replace({ name: 'login' })
+      dialog.warning({
+        title: '退出登录提示',
+        content: '确定退出当前账号？',
+        positiveText: '确定',
+        negativeText: '取消',
+        onPositiveClick: () => {
+          router.replace({ name: 'login' })
+        },
+      })
       break
     default:
       //

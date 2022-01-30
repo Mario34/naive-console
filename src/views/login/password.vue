@@ -9,26 +9,33 @@
       <div class="title">
         Sign in to Naive Console
       </div>
-      <div class="quick-login">
-        <n-button block type="info" size="large">
-          <n-icon style="margin-right: 4px;" size="22">
-            <LogoGithubIcon />
-          </n-icon>
-          Continue with Github
-        </n-button>
-        <n-button block type="primary" size="large">
-          <n-icon style="margin-right: 4px;" size="22">
-            <LogoGoogleIcon />
-          </n-icon>
-          Continue with Google
-        </n-button>
-        <n-button block size="large" @click="$router.push({ name: 'login-password' })">
-          <n-icon style="margin-right: 4px;" size="22">
-            <EmailIcon />
-          </n-icon>
-          Continue with Password
+      <div class="form">
+        <n-form ref="formRef" :model="model" :rules="rules">
+          <n-form-item path="username" label="Username or email address">
+            <n-input v-model:value="model.username" clearable />
+          </n-form-item>
+          <n-form-item path="password" label="Password">
+            <n-input
+              v-model:value="model.password"
+              type="password"
+              clearable
+              @keyup.enter.prevent="onConfirmForm"
+            />
+          </n-form-item>
+        </n-form>
+        <n-button block type="primary" @click="onConfirmForm">
+          Login
         </n-button>
       </div>
+      <n-button
+        type_="text"
+        class="quick-login"
+        block
+        size="large"
+        @click="$router.push({ name: 'login' })"
+      >
+        Quick login use Github
+      </n-button>
     </div>
   </div>
 </template>
@@ -40,7 +47,6 @@ import {
 import { ref } from 'vue'
 import {
   LogoGithub as LogoGithubIcon, Lightning as LightningIcon,
-  LogoGoogle as LogoGoogleIcon, Email as EmailIcon,
 } from '@vicons/carbon'
 import { useRouter } from 'vue-router'
 
@@ -96,23 +102,18 @@ const onConfirmForm = () => {
     font-size: 24px;
     line-height: 36px;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
+  }
+
+  .form {
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e9e9e9;
+    background-color: #fff;
   }
 
   .quick-login {
     margin-top: 16px;
-
-    .desc {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 6px;
-    }
-
-    .n-button {
-      & + .n-button {
-        margin-top: 12px;
-      }
-    }
   }
 }
 </style>
