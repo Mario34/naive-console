@@ -25,7 +25,7 @@
           <n-avatar
             round
             size="medium"
-            src=""
+            src="/avatar.png"
           />
         </n-dropdown>
       </div>
