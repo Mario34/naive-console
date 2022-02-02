@@ -5,13 +5,10 @@
   >
     <n-scrollbar style="max-height: 100%;">
       <div class="app-slogan">
-        <n-icon size="30">
-          <LightningIcon />
-        </n-icon>
-        <span class="app-name">Naive Console</span>
+        <img class="logo" src="/logo.png" alt="logo">
       </div>
       <n-menu
-        inverted
+        inverted_
         accordion
         :options="menuOptions"
         :indent="16"
@@ -94,23 +91,23 @@ const currentKey = computed(() => {
   top: 0;
   left: 0;
   transition: width var(--app-animation-duration);
-  background-color: rgb(0, 20, 40);
+  z-index: var(--app-zindex-side-bar);
+  background-color: #fff;
+  border-right: 1px solid var(--app-border-color);
+  box-sizing: border-box;
 
   .app-slogan {
     color: #fff;
-    padding: 14px 10px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .app-name {
-    font-size: 18px;
-    margin-left: 4px;
-    display: inline-block;
-    transition: width var(--app-animation-duration);
+    transition: width var(--app-animation-duration), height var(--app-animation-duration);
     overflow: hidden;
-    white-space: nowrap;
+
+    .logo {
+      height: 50px;
+    }
   }
 
   &.collapsed {
@@ -118,6 +115,12 @@ const currentKey = computed(() => {
 
     .app-name {
       width: 0;
+    }
+
+    .app-slogan {
+      width: 0;
+      height: 0;
+      padding: 0;
     }
   }
 }

@@ -21,15 +21,7 @@ export default definedRoutes([
         meta: {
           title: 'demo',
         },
-        component: () => import('@/views/home/index.vue'),
-      },
-      {
-        path: 'table-demo-table',
-        name: 'table-demo-table',
-        meta: {
-          title: 'demo-table',
-        },
-        component: () => import('@/views/home/index.vue'),
+        component: () => import('@/views/list/index.vue'),
       },
     ],
   },

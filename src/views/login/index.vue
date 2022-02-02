@@ -2,9 +2,7 @@
   <div class="login">
     <div class="login-container">
       <div class="logo">
-        <n-icon size="48">
-          <LightningIcon />
-        </n-icon>
+        <img class="logo-img" src="/logo.png" alt="logo">
       </div>
       <div class="title">
         Sign in to Naive Console
@@ -90,6 +88,10 @@ const onConfirmForm = () => {
   .logo {
     padding: 32px 0 24px;
     text-align: center;
+
+    .logo-img {
+      height: 60px;
+    }
   }
 
   .title {

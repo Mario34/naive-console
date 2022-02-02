@@ -61,7 +61,7 @@
         </n-card>
       </n-gi>
     </n-grid>
-    <n-grid :x-gap="12" :y-gap="8" cols="1 600:2 800:3">
+    <n-grid :x-gap="12" :y-gap="8" cols="1 800:3">
       <n-gi>
         <n-card title="数据概览示例">
           <n-grid :x-gap="12" :y-gap="8" cols="1 200:2 600:4">

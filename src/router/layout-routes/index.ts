@@ -5,7 +5,7 @@ import error from './error'
 
 export const layoutRoutes = [
   ...home,
-  ...error,
   ...table,
+  ...error,
   ...outLink,
 ]

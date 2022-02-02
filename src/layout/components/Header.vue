@@ -92,7 +92,7 @@ const handleSelect = (e: string) => {
   justify-content: space-between;
   box-sizing: border-box;
   background-color: var(--app-bg-header);
-  box-shadow: 0 1px 6px rgba(30, 30, 30, 0.1);
+  border-bottom: 1px solid var(--app-border-color);
   z-index: var(--app-zindex-top);
 
   &.collapsed {
