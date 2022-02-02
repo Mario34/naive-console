@@ -6,7 +6,7 @@ import type { Router } from 'vue-router'
 export const guard = (router: Router) => {
   // const { state, getUserInfo, clearUserInfo } = useUser(router)
   router.beforeEach(async (to, form, next) => {
-    if (to.name === 'login') {
+    if (to.name === 'login' || to.name === 'login-password') {
       if (!storageToken.get()) {
         next()
       } else {

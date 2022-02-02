@@ -6,7 +6,7 @@ import { routes } from './routes'
 console.log(filterRowRoutes(routes))
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory('./'),
   routes: filterRowRoutes(routes),
 })
 
