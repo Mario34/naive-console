@@ -35,7 +35,7 @@
 </template>
 
 <script lang="tsx">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, unref } from 'vue'
 import {
   NForm, NFormItem, NButton, NSpace, NInput,
 } from 'naive-ui'
@@ -64,11 +64,11 @@ export default defineComponent({
   setup(props, { emit }) {
     const formRef = ref<InstanceType<typeof NForm>>()
     const fieldRefs = ref<Record<string, any>>({})
-    const formValue = ref<Record<string, unknown>>({})
+    const formValue = ref<Record<string, unknown>>(unref(props.value) ?? {})
     const onReset = () => {
       props.schemes.forEach(item => {
         set(formValue.value, item.key, null)
-        emit('reset', formValue.value)
+        emit('reset', {})
       })
     }
     const onSearch = () => {
@@ -76,7 +76,6 @@ export default defineComponent({
     }
     return {
       get,
-      set,
       formRef,
       formValue,
       fieldRefs,

@@ -2,47 +2,99 @@
   <div class="">
     <c-form
       v-bind="filterProps"
+      :value="state.filter"
       :style="{padding: '20px 0'}"
       @search="onSearch"
+      @fieldUpdate="onFieldUpdate"
       @reset="onReset"
     />
-    <n-data-table v-bind="tableProps" />
+    <n-data-table
+      remote
+      v-bind="tableProps"
+      :data="state?.list ?? []"
+      :pagination="state?.pagination"
+      :loading="state?.loading"
+      @update:page="onPageChange"
+      @update:page-size="onPageSizeChange"
+    />
   </div>
 </template>
 
-<script lang="tsx">
-import { defineComponent } from 'vue'
+<script setup lang="tsx">
+import { ref } from 'vue'
 import { NDataTable } from 'naive-ui'
 import { CForm } from '@/components/CForm'
+
+import type { UnwrapNestedRefs } from 'vue'
+import type { StateType, InitType, Methods } from './index'
 
 const filterNa = (value: Record<string, unknown>) => {
   Object.entries(value).filter(([key, item]) => item !== null)
 }
 
-export default defineComponent({
-  name: 'CTable',
-  components: {
-    NDataTable, CForm,
-  },
-  props: {
-    filterProps: {
-      type: Object,
-      default: () => ({}),
-    },
-    tableProps: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  setup(props, { }) {
-    return {
-      onSearch(value) {
-        console.log(value)
-      },
-      onReset() {
-        //
-      },
-    }
-  },
-})
+const props = defineProps<{
+  init: InitType
+  filterProps: any
+  tableProps: any
+}>()
+
+let state = ref<UnwrapNestedRefs<StateType<any> | null>>(null)
+let methods: Methods | null = null
+
+// 绑定状态
+const bindState = (value: UnwrapNestedRefs<StateType<any> | null>) => {
+  state.value = value
+}
+// 绑定方法
+const bindMethods = (value: Methods) => {
+  methods = value
+}
+const onPageChange = (page: number) => {
+  if (methods) {
+    methods.getList({
+      page,
+      pageSize: state?.value?.pagination.pageSize ?? 10,
+      ...state?.value?.filter,
+    })
+  }
+}
+const onPageSizeChange = (size: number) => {
+  if (state.value && methods) {
+    state.value.pagination.pageSize = size
+    methods.getList({
+      page: 1,
+      pageSize: size,
+      ...state?.value?.filter,
+    })
+  }
+}
+const onRefresh = () => {
+  if (state.value && methods) {
+    methods.getList({
+      page: state.value.pagination.page,
+      pageSize: state.value.pagination.pageSize,
+      ...state?.value?.filter,
+    })
+  }
+}
+const onSearch = (val: Record<string, any>) => {
+  if (state.value && methods) {
+    methods.getList({
+      page: state.value.pagination.page,
+      pageSize: state.value.pagination.pageSize,
+      ...state?.value?.filter,
+    })
+  }
+}
+const onReset = () => {
+  if (state.value) {
+    state.value.filter = {}
+  }
+}
+const onFieldUpdate = (key: string, val: any) => {
+  if (state.value) {
+    state.value.filter[key] = val
+  }
+}
+props.init({ bindState, bindMethods })
 </script>

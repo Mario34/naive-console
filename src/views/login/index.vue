@@ -20,7 +20,7 @@
           </n-icon>
           Continue with Google
         </n-button>
-        <n-button block size="large" @click="$router.push({ name: 'login-password' })">
+        <n-button block size="large" @click="$router.push('/login-password')">
           <n-icon style="margin-right: 4px;" size="22">
             <EmailIcon />
           </n-icon>
@@ -43,7 +43,7 @@ import {
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const formRef = ref<InstanceType<typeof NForm>>(null)
+const formRef = ref<InstanceType<typeof NForm>>()
 const model = ref({
   username: '',
   password: '',
@@ -65,7 +65,7 @@ const rules = {
   ],
 }
 const onConfirmForm = () => {
-  formRef.value.validate((errors) => {
+  formRef.value?.validate((errors) => {
     if (!errors) {
       // TODO: 登录逻辑
       router.replace('/')

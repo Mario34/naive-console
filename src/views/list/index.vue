@@ -1,161 +1,111 @@
 <template>
-  <n-config-provider :theme="darkTheme" :locale="zhCN" size="small">
-    <n-message-provider>
-      <c-table
-          :table-props="{
-          columns,
-          data
-        }"
-          :filter-props="{
-          schemes: formSchemes,
-        }"
-      />
-    </n-message-provider>
-  </n-config-provider>
+  <c-table
+    :init="initCTable"
+    :table-props="{
+      columns,
+    }"
+    :filter-props="{
+      schemes: formSchemes,
+    }"
+  />
 </template>
 
-<script lang="tsx">
-import {
-  defineComponent, ref, reactive, onMounted, h,
-} from 'vue'
-import { CTable } from '@/components/CTable'
-import {
-  NConfigProvider, NMessageProvider, darkTheme, NButton, NInput, NInputNumber, NSelect, NSwitch, zhCN,
-} from 'naive-ui'
+<script setup lang="tsx">
+import { NButton, NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui'
+import { CTable, useCTable } from '@/components/CTable'
+import { useMockPage } from '@/mock/list'
 
-export default defineComponent({
-  name: 'ListPage',
-  components: {
-    NConfigProvider,
-    NMessageProvider,
-    CTable,
-  },
-  setup() {
+const mockPage = useMockPage({
+  total: 188,
+  gRow(index, id) {
+    const addressMap = ['杭州市', '宁波市', '温州市', '嘉兴市', '台州', '绍兴', '金华市', '湖州市', '衢州市', '丽水市', '舟山市']
     return {
-      zhCN,
-      formSchemes: [
-        {
-          title: '名称',
-          key: 'name',
-          field: NInput,
-        },
-        {
-          title: '类型',
-          key: 'prop.type',
-          field: NSelect,
-          props: {
-            placeholder: '选择类型',
-            options: [
-              {
-                label: '类型1',
-                value: '1',
-              },
-              {
-                label: '类型2',
-                value: '2',
-              },
-            ],
-            'on-update:value': (value) => {
-              console.log(value)
-            },
-          },
-        },
-        {
-          title: '年龄',
-          key: 'age',
-          field: NInputNumber,
-        },
-        {
-          title: '开关',
-          key: 'off',
-          field: NSwitch,
-        },
-      ],
-      darkTheme,
-      data: [
-        {
-          name: 'hahaha',
-          age: '18',
-          address: 'beijing',
-          a: {
-            b: {
-              c: '[a.b.c] path value',
-            },
-          },
-          render: 'custom render',
-        },
-        {
-          name: 'hahaha',
-          age: '18',
-          address: 'beijing',
-          a: {
-            b: {
-              c: '[a.b.c] path value',
-            },
-          },
-          render: 'custom render',
-        },
-        {
-          name: 'hahaha',
-          age: '18',
-          address: 'beijing',
-          a: {
-            b: {
-              c: '[a.b.c] path value',
-            },
-          },
-          render: 'custom render',
-        },
-        {
-          name: 'hahaha',
-          age: '18',
-          address: 'beijing',
-          a: {
-            b: {
-              c: '[a.b.c] path value',
-            },
-          },
-          render: 'custom render',
-        },
-        {
-          name: 'hahaha',
-          age: '18',
-          address: 'beijing',
-          a: {
-            b: {
-              c: '[a.b.c] path value',
-            },
-          },
-          render: 'custom render',
-        },
-      ],
-      columns: [
-        {
-          title: 'Name',
-          key: 'name',
-          align: 'center',
-        },
-        {
-          title: 'Age',
-          key: 'age',
-        },
-        {
-          title: 'Address',
-          key: 'address',
-        },
-        {
-          title: 'Path',
-          key: 'a.b.c',
-        },
-        {
-          title: 'render',
-          key: 'render',
-          render() {
-            return <NButton type="success">custom render</NButton>
-          },
-        },
-      ],
+      order: index + 1,
+      name: `用户${id}`,
+      code: `EF${Math.random().toString().slice(-12)}`,
+      type: Math.ceil(Math.random() * 4),
+      status: Math.ceil(Math.random() * 4),
+      city: addressMap[Math.floor(Math.random() * addressMap.length)],
+      timestamp: Date.now(),
     }
   },
 })
+const { init: initCTable, state } = useCTable<any>({
+  getList: mockPage.getList,
+  autoGetFirst: true,
+  pagination: {
+    showSizePicker: true,
+  },
+  filter: {
+    name: 'hahahahha',
+    type: '1',
+  },
+})
+
+const formSchemes = [
+  {
+    title: '名称',
+    key: 'name',
+    field: NInput,
+  },
+  {
+    title: '类型',
+    key: 'type',
+    field: NSelect,
+    props: {
+      placeholder: '选择类型',
+      options: [
+        {
+          label: '类型1',
+          value: '1',
+        },
+        {
+          label: '类型2',
+          value: '2',
+        },
+      ],
+    },
+  },
+  {
+    title: '年龄',
+    key: 'age',
+    field: NInputNumber,
+  },
+  {
+    title: '开关',
+    key: 'off',
+    field: NSwitch,
+  },
+]
+const columns = [
+  {
+    title: '序号',
+    key: 'order',
+    align: 'center',
+  },
+  {
+    title: '用户名',
+    key: 'name',
+  },
+  {
+    title: '编码',
+    key: 'code',
+  },
+  {
+    title: 'type',
+    key: 'type',
+  },
+  {
+    title: 'city',
+    key: 'city',
+  },
+  {
+    title: 'status',
+    key: 'status',
+  },
+  {
+    title: 'timestamp',
+    key: 'timestamp',
+  },
+]
 </script>

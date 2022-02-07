@@ -3,8 +3,6 @@ import { filterRowRoutes } from './defined'
 import { guard } from './guard'
 import { routes } from './routes'
 
-console.log(filterRowRoutes(routes))
-
 export const router = createRouter({
   history: createWebHashHistory('./'),
   routes: filterRowRoutes(routes),
