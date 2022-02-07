@@ -40,16 +40,13 @@
 
 <script setup lang="ts">
 import {
-  NButton, NIcon, NForm, NFormItem, NInput,
+  NButton, NForm, NFormItem, NInput,
 } from 'naive-ui'
 import { ref } from 'vue'
-import {
-  LogoGithub as LogoGithubIcon, Lightning as LightningIcon,
-} from '@vicons/carbon'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const formRef = ref<InstanceType<typeof NForm>>(null)
+const formRef = ref<InstanceType<typeof NForm> | null>(null)
 const model = ref({
   username: '',
   password: '',
@@ -71,7 +68,7 @@ const rules = {
   ],
 }
 const onConfirmForm = () => {
-  formRef.value.validate((errors) => {
+  formRef.value?.validate((errors) => {
     if (!errors) {
       // TODO: 登录逻辑
       router.replace('/')

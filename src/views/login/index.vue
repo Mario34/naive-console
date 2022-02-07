@@ -32,46 +32,10 @@
 </template>
 
 <script setup lang="ts">
+import { NButton, NIcon } from 'naive-ui'
 import {
-  NButton, NIcon, NForm, NFormItem, NInput,
-} from 'naive-ui'
-import { ref } from 'vue'
-import {
-  LogoGithub as LogoGithubIcon, Lightning as LightningIcon,
-  LogoGoogle as LogoGoogleIcon, Email as EmailIcon,
+  LogoGithub as LogoGithubIcon, LogoGoogle as LogoGoogleIcon, Email as EmailIcon,
 } from '@vicons/carbon'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const formRef = ref<InstanceType<typeof NForm>>()
-const model = ref({
-  username: '',
-  password: '',
-})
-const rules = {
-  username: [
-    {
-      required: true,
-      min: 4,
-      max: 24,
-    },
-  ],
-  password: [
-    {
-      required: true,
-      min: 4,
-      max: 50,
-    },
-  ],
-}
-const onConfirmForm = () => {
-  formRef.value?.validate((errors) => {
-    if (!errors) {
-      // TODO: 登录逻辑
-      router.replace('/')
-    }
-  })
-}
 </script>
 
 <style lang="scss" scoped>

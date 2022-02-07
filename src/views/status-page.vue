@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import { NButton, NSpace, NIcon, NDivider } from 'naive-ui'
+import { NButton, NIcon, NDivider } from 'naive-ui'
 import { Cursor1 as AiStatusFailedIcon } from '@vicons/carbon'
 
 const props = defineProps<{
-  statusCode: string
+  statusCode: keyof (typeof codeTexts)
 }>()
 
 const codeTexts = {
@@ -31,7 +31,6 @@ const codeTexts = {
   403: '无权访问该页面',
   500: '服务器出错了',
 }
-
 </script>
 
 <style lang="scss" scoped>

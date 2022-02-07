@@ -3,32 +3,15 @@
     <div class="layout-content-container">
       <router-view v-slot="{ Component, route }">
         <transition name="fade" mode="out-in">
-          <keep-alive :max="20">
-            <component
-              :is="Component"
-              :key="route.path"
-            />
-          </keep-alive>
+          <component
+            :is="Component"
+            :key="route.path"
+          />
         </transition>
       </router-view>
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { useLayout } from '../config'
-
-export default defineComponent({
-  name: 'LayoutContent',
-  setup() {
-    const layoutCtx = useLayout()
-    return {
-      layoutCtx,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 .layout-content {
@@ -43,5 +26,15 @@ export default defineComponent({
   padding: 20px;
   overflow: hidden;
   border-radius: 4px;
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 160ms ease-in-out;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 }
 </style>

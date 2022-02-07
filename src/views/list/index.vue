@@ -1,17 +1,13 @@
 <template>
   <c-table
     :init="initCTable"
-    :table-props="{
-      columns,
-    }"
-    :filter-props="{
-      schemes: formSchemes,
-    }"
+    :table-props="{ columns }"
+    :filter-props="{ schemes: formSchemes }"
   />
 </template>
 
 <script setup lang="tsx">
-import { NButton, NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui'
+import { NInput, NInputNumber, NSelect, NSwitch } from 'naive-ui'
 import { CTable, useCTable } from '@/components/CTable'
 import { useMockPage } from '@/mock/list'
 

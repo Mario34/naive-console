@@ -1,4 +1,3 @@
-import { RouterView } from 'vue-router'
 import { definedRoutes } from '../defined'
 import { Table as TableIcon } from '@vicons/carbon'
 
@@ -8,21 +7,12 @@ import { Table as TableIcon } from '@vicons/carbon'
 export default definedRoutes([
   {
     path: 'table',
+    name: 'table-list',
     meta: {
-      title: 'table',
+      title: '表格',
       icon: TableIcon,
       redirect: 'table-list',
     },
-    component: RouterView,
-    children: [
-      {
-        path: '',
-        name: 'table-list',
-        meta: {
-          title: 'demo',
-        },
-        component: () => import('@/views/list/index.vue'),
-      },
-    ],
+    component: () => import('@/views/list/index.vue'),
   },
 ])

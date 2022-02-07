@@ -2,7 +2,7 @@
   <div class="">
     <c-form
       v-bind="filterProps"
-      :value="state.filter"
+      :value="state?.filter"
       :style="{padding: '20px 0'}"
       @search="onSearch"
       @fieldUpdate="onFieldUpdate"
@@ -27,10 +27,6 @@ import { CForm } from '@/components/CForm'
 
 import type { UnwrapNestedRefs } from 'vue'
 import type { StateType, InitType, Methods } from './index'
-
-const filterNa = (value: Record<string, unknown>) => {
-  Object.entries(value).filter(([key, item]) => item !== null)
-}
 
 const props = defineProps<{
   init: InitType

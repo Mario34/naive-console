@@ -229,7 +229,9 @@ import {
   AlignHorizontalLeft as AlignHorizontalLeftIcon, AnnotationVisibility as AnnotationVisibilityIcon,
 } from '@vicons/carbon'
 
-const columns = [
+import type { TableColumns } from 'naive-ui/es/data-table/src/interface.d'
+
+const columns: TableColumns = [
   {
     title: 'Name',
     key: 'name',
