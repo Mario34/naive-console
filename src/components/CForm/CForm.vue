@@ -18,7 +18,7 @@
         :ref="(comp) => fieldRefs[item.key] = comp"
         v-bind="item.props"
         :value="get(formValue, item.key)"
-        @update:value="onFieldUpdate"
+        @update:value="(val) => onFieldUpdate(item.key, val)"
       />
     </n-form-item>
     <n-form-item>
@@ -50,7 +50,7 @@ const emit = defineEmits(['reset', 'search', 'fieldUpdate'])
 
 const formRef = ref<InstanceType<typeof NForm>>()
 const fieldRefs = ref<Record<string, any>>({})
-const formValue = ref<Record<string, unknown>>(unref(props.value) ?? {})
+const formValue = ref<Record<string, unknown>>({ ...props.value })
 const onReset = () => {
   props.schemes.forEach(item => {
     set(formValue.value, item.key, null)
@@ -60,8 +60,9 @@ const onReset = () => {
 const onSearch = () => {
   emit('search', formValue.value)
 }
-const onFieldUpdate = (val: unknown, key: string) => {
+const onFieldUpdate = (key: string, val: unknown) => {
   set(formValue.value, key, val)
+  console.log(key, val)
   emit('fieldUpdate', key, val)
 }
 </script>
