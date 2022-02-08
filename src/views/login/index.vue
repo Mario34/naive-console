@@ -8,13 +8,13 @@
         Sign in to Naive Console
       </div>
       <div class="quick-login">
-        <n-button block type="info" size="large">
+        <n-button block type="info" size="large" @click="onQuickLogin">
           <n-icon style="margin-right: 4px;" size="22">
             <LogoGithubIcon />
           </n-icon>
           Continue with Github
         </n-button>
-        <n-button block type="primary" size="large">
+        <n-button block type="primary" size="large" @click="onQuickLogin">
           <n-icon style="margin-right: 4px;" size="22">
             <LogoGoogleIcon />
           </n-icon>
@@ -36,6 +36,14 @@ import { NButton, NIcon } from 'naive-ui'
 import {
   LogoGithub as LogoGithubIcon, LogoGoogle as LogoGoogleIcon, Email as EmailIcon,
 } from '@vicons/carbon'
+import { storageToken } from '@/storage'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const onQuickLogin = () => {
+  storageToken.set('guest')
+  router.replace('/')
+}
 </script>
 
 <style lang="scss" scoped>

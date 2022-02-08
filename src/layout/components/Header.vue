@@ -42,6 +42,7 @@ import {
 import { ArrowsHorizontal as SettingsAdjustIcon } from '@vicons/carbon'
 import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 import { useRouter } from 'vue-router'
+import { storageToken } from '@/storage'
 
 const router = useRouter()
 const layoutCtx = useLayout()
@@ -69,6 +70,7 @@ const handleSelect = (e: string) => {
         positiveText: '确定',
         negativeText: '取消',
         onPositiveClick: () => {
+          storageToken.remove()
           router.replace({ name: 'login' })
         },
       })
