@@ -18,7 +18,7 @@
         :ref="(comp) => fieldRefs[item.key] = comp"
         v-bind="item.props"
         :value="get(formValue, item.key)"
-        @update:value="(val) => onFieldUpdate(item.key, val)"
+        @update:value="(val: any) => onFieldUpdate(item.key, val)"
       />
     </n-form-item>
     <n-form-item>
@@ -62,7 +62,6 @@ const onSearch = () => {
 }
 const onFieldUpdate = (key: string, val: unknown) => {
   set(formValue.value, key, val)
-  console.log(key, val)
   emit('fieldUpdate', key, val)
 }
 </script>
