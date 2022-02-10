@@ -67,6 +67,15 @@ const onFieldUpdate = (key: string, val: unknown) => {
 </script>
 
 <style lang="scss" scoped>
+.n-form--inline {
+  flex-wrap: wrap;
+
+  .n-form-item {
+    flex-shrink: 0;
+    min-width: 160px;
+  }
+}
+
 .n-input,
 .n-select {
   min-width: 200px;
