@@ -1,5 +1,11 @@
 <template>
-  <n-config-provider :locale="zhCN" size="small" :theme-overrides="themeOverrides">
+  <n-config-provider
+    abstract
+    size="small"
+    :locale="zhCN"
+    :theme="layoutCtx.state.dark? darkTheme : null"
+    :theme-overrides="themeOverrides"
+  >
     <n-loading-bar-provider>
       <n-message-provider>
         <n-dialog-provider>
@@ -15,11 +21,12 @@
 <script setup lang="ts">
 import {
   NConfigProvider, NMessageProvider, NLoadingBarProvider, NDialogProvider,
-  zhCN,
+  zhCN, darkTheme,
 } from 'naive-ui'
 import { AppProvider } from '@/layout'
 
 import type { GlobalThemeOverrides } from 'naive-ui'
+import { useLayout } from '@/layout/config'
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -33,6 +40,7 @@ const themeOverrides: GlobalThemeOverrides = {
     infoColorSuppl: '#90A2B7FF',
   },
 }
+const layoutCtx = useLayout()
 </script>
 
 <style lang="scss" scoped>

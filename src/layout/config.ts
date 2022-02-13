@@ -1,6 +1,12 @@
 import { reactive, readonly } from 'vue'
 
-const state = reactive({
+const state = reactive<{
+  dark: boolean
+  sidebarCollapsed: boolean
+  headerFixed: boolean
+}>({
+  /* 颜色模式 */
+  dark: true,
   /* 侧边菜单栏折叠状态 */
   sidebarCollapsed: false,
   /* 头部吸顶状态 */
@@ -25,11 +31,21 @@ const switchHeaderFixed = (val?: boolean) => {
   }
 }
 
+/* 切换暗色/亮色模式 */
+const switchDark = (val?: boolean) => {
+  if (val === undefined) {
+    state.dark = !state.dark
+  } else {
+    state.dark = val
+  }
+}
+
 /* 这里直接使用reactive实现全局配置，避免与其他状态管理库耦合 */
 export const useLayout = () => {
   return {
     state: readonly(state),
     switchSidebar,
     switchHeaderFixed,
+    switchDark,
   }
 }

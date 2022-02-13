@@ -13,14 +13,30 @@
         >
           <n-icon
             size="20"
-            @click="layoutCtx.switchSidebar(!layoutCtx.state.sidebarCollapsed)"
+            @click="layoutCtx.switchSidebar()"
           >
-            <SettingsAdjustIcon />
+            <CollapseCategoriesIcon v-if="layoutCtx.state.sidebarCollapsed" />
+            <OpenPanelFilledLeftIcon v-else />
           </n-icon>
         </n-button>
         <Breadcrumb />
       </div>
       <div class="layout-header__right">
+        <n-button
+          strong
+          secondary
+          circle
+          size="small"
+          class="dark-switch"
+        >
+          <n-icon
+            size="18"
+            @click="layoutCtx.switchDark()"
+          >
+            <LightIcon v-if="layoutCtx.state.dark" />
+            <LightFilledIcon v-else />
+          </n-icon>
+        </n-button>
         <n-dropdown trigger="hover" :options="options" @select="handleSelect">
           <n-avatar
             round
@@ -39,10 +55,15 @@ import {
   NIcon, NAvatar, NDropdown, NButton,
   useMessage, useDialog,
 } from 'naive-ui'
-import { ArrowsHorizontal as SettingsAdjustIcon } from '@vicons/carbon'
 import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 import { useRouter } from 'vue-router'
 import { storageToken } from '@/storage'
+import {
+  Light as LightIcon, LightFilled as LightFilledIcon,
+  OpenPanelFilledLeft as OpenPanelFilledLeftIcon,
+  CollapseCategories as CollapseCategoriesIcon,
+} from '@vicons/carbon'
+import { storageDarkMode } from '@/storage'
 
 const router = useRouter()
 const layoutCtx = useLayout()
@@ -119,6 +140,10 @@ const handleSelect = (e: string) => {
     display: flex;
     align-items: center;
     padding: 0 20px;
+
+    .dark-switch {
+      margin-right: 20px;
+    }
   }
 }
 </style>

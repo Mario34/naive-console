@@ -21,11 +21,8 @@ export const guard = (router: Router) => {
     window.document.title = to.meta?.title ?? 'Naive Console'
     next()
   })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   router.afterEach((to, form, failure) => {
-    if (failure) {
-      window.$appLoadingBar.error()
-    } else {
-      window.$appLoadingBar.finish()
-    }
+    window.$appLoadingBar.finish()
   })
 }

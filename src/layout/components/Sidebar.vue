@@ -8,8 +8,8 @@
         <img class="logo" src="/logo.png" alt="logo">
       </div>
       <n-menu
-        inverted_
         accordion
+        :inverted="layoutCtx.state.dark"
         :options="menuOptions"
         :indent="16"
         :collapsed="layoutCtx.state.sidebarCollapsed"
@@ -23,13 +23,19 @@
 <script setup lang="ts">
 import { h, computed } from 'vue'
 import { NMenu, NIcon, NScrollbar } from 'naive-ui'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { layoutRoutes } from '@/router/layout-routes'
 import { useLayout } from '../config'
-import { Lightning as LightningIcon } from '@vicons/carbon'
 
 import type { MenuOption } from 'naive-ui'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router'
+
+const layoutCtx = useLayout()
+const route = useRoute()
+const menuOptions = transMenu(layoutRoutes, route)
+const currentKey = computed(() => {
+  return route.meta?._key ?? 0
+})
 
 function renderIcon(route: RouteRecordRaw) {
   if (!route.meta?.icon) {
@@ -38,49 +44,41 @@ function renderIcon(route: RouteRecordRaw) {
   return () => h(NIcon, null, { default: () => h(route.meta?.icon) })
 }
 
-function renderLabel(route: RouteRecordRaw) {
-  if (route.meta?.link) {
+function renderLabel(menu: RouteRecordRaw, route: RouteLocationNormalizedLoaded) {
+  if (menu.meta?.link) {
     return () => h('a',
       {
         target: '__blank',
-        href: route.meta?.link,
+        href: menu.meta?.link,
         'aria-hidden': true,
       },
-      [route.meta?.title])
+      [menu.meta?.title])
   }
-  if (route.children?.length) {
-    return () => h('div', {}, route.meta?.title)
+  if (menu.children?.length) {
+    return () => h('div', {}, menu.meta?.title)
   }
   return () => h(
     RouterLink,
-    { to: { name: route.name } },
-    { default: () => route.meta?.title },
+    { to: { name: menu.name } },
+    { default: () => menu.meta?.title },
   )
 }
 
-const transMenu = (routes: RouteRecordRaw[]) => {
+function transMenu(routes: RouteRecordRaw[], route: RouteLocationNormalizedLoaded) {
   const result: MenuOption[] = []
-  for (const route of routes) {
+  for (const route_ of routes) {
     const option: MenuOption = {
-      label: renderLabel(route),
-      key: route.meta?._key,
-      icon: renderIcon(route),
+      label: renderLabel(route_, route),
+      key: route_.meta?._key,
+      icon: renderIcon(route_),
     }
-    if (Array.isArray(route.children)) {
-      option.children = transMenu(route.children)
+    if (Array.isArray(route_.children)) {
+      option.children = transMenu(route_.children, route)
     }
     result.push(option)
   }
   return result
 }
-
-const layoutCtx = useLayout()
-const menuOptions = transMenu(layoutRoutes)
-const route = useRoute()
-const router = useRouter()
-const currentKey = computed(() => {
-  return route.meta?._key ?? 0
-})
 </script>
 
 <style lang="scss" scoped>
@@ -92,12 +90,11 @@ const currentKey = computed(() => {
   left: 0;
   transition: width var(--app-animation-duration);
   z-index: var(--app-zindex-side-bar);
-  background-color: #fff;
+  background-color: var(--app-bg-header);
   border-right: 1px solid var(--app-border-color);
   box-sizing: border-box;
 
   .app-slogan {
-    color: #fff;
     padding: 8px;
     display: flex;
     align-items: center;

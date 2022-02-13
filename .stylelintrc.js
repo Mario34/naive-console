@@ -6,7 +6,7 @@ module.exports = {
   'overrides': [
     {
       // sfc语法解析
-      files: ['*.vue', '**/*.vue'],
+      files: ['*.vue', '**/*.vue', '*.html', '**/*.html'],
       customSyntax: 'postcss-html',
     },
   ],
@@ -14,6 +14,7 @@ module.exports = {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
     'block-no-empty': null,
+    'selector-class-pattern': null,
   },
   'ignoreFiles': ['dist/**'],
 }
