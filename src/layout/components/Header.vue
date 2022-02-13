@@ -63,7 +63,6 @@ import {
   OpenPanelFilledLeft as OpenPanelFilledLeftIcon,
   CollapseCategories as CollapseCategoriesIcon,
 } from '@vicons/carbon'
-import { storageDarkMode } from '@/storage'
 
 const router = useRouter()
 const layoutCtx = useLayout()
