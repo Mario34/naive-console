@@ -49,6 +49,7 @@ const onQuickLogin = () => {
 <style lang="scss" scoped>
 .login {
   min-height: 100vh;
+  background-color: var(--app-bg-base);
 
   .login-container {
     width: 340px;
@@ -78,7 +79,6 @@ const onQuickLogin = () => {
 
     .desc {
       font-size: 14px;
-      color: #555;
       margin-bottom: 6px;
     }
 

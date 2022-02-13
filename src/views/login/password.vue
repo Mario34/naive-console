@@ -80,6 +80,7 @@ const onConfirmForm = () => {
 <style lang="scss" scoped>
 .login {
   min-height: 100vh;
+  background-color: var(--app-bg-base);
 
   .login-container {
     width: 340px;
@@ -107,8 +108,8 @@ const onConfirmForm = () => {
   .form {
     padding: 20px;
     border-radius: 6px;
-    border: 1px solid #e9e9e9;
-    background-color: #fff;
+    border: 1px solid var(--app-border-color);
+    background-color: var(--app-bg-main);
   }
 
   .quick-login {
