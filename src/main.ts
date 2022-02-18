@@ -18,8 +18,6 @@ const app = createApp({
   render: () => h(App),
 })
 
-// app.component('NMessageProvider', NMessageProvider)
-
 app.use(router)
 
 app.mount('#app')

@@ -9,14 +9,6 @@ import { useLoadingBar } from 'naive-ui'
 import { computed } from 'vue'
 import { useLayout } from '../config'
 
-import type { LoadingBarApiInjection } from 'naive-ui/es/loading-bar/src/LoadingBarProvider'
-
-declare global {
-  interface Window {
-    $appLoadingBar: LoadingBarApiInjection
-  }
-}
-
 window.$appLoadingBar = useLoadingBar()
 
 const layoutCtx = useLayout()
